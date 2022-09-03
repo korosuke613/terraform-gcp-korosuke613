@@ -33,3 +33,15 @@ resource "google_dns_record_set" "korosuke613_dev_aaaa" {
     "2606:50c0:8003::153"
   ]
 }
+
+resource "google_dns_record_set" "korosuke613_dev_cname" {
+  name = data.google_dns_managed_zone.korosuke613_dev.dns_name
+  type = "CNAME"
+  ttl  = 300
+
+  managed_zone = data.google_dns_managed_zone.korosuke613_dev.name
+
+  rrdatas = [
+    "korosuke613.github.io."
+  ]
+}
