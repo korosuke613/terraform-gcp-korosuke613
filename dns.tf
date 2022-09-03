@@ -49,7 +49,7 @@ resource "google_dns_record_set" "www_korosuke613_dev_cname" {
 resource "google_dns_record_set" "_github_pages_challenge_korosuke613_korosuke613_dev_txt" {
   name = "_github-pages-challenge-korosuke613.${data.google_dns_managed_zone.korosuke613_dev.dns_name}"
   type = "TXT"
-  ttl  = 300
+  ttl  = 86400
 
   managed_zone = data.google_dns_managed_zone.korosuke613_dev.name
 
