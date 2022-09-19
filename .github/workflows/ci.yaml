@@ -45,7 +45,14 @@ jobs:
           create_credentials_file: 'true'
           workload_identity_provider: 'projects/220576448838/locations/global/workloadIdentityPools/github-oidc/providers/github-oidc'
           service_account: 'github-actions-terraform-apply@korosuke613.iam.gserviceaccount.com'
-
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.8
       - name: gcloud
         run: |-
           gcloud auth login --brief --cred-file=${{ steps.auth.outputs.credentials_file_path }}
+      - run: |
+          terraform init
+          terraform plan
+          
+          
