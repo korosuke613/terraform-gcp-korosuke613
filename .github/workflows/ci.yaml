@@ -31,3 +31,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: aquasecurity/tfsec-action@v1.0.2
+
+  demo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v0.8.1
+        with:
+          create_credentials_file: 'true'
+          workload_identity_provider: 'projects/korosuke613/locations/global/workloadIdentityPools/github-oidc/providers/github-oidc'
+          service_account: 'github-actions-terraform-apply@korosuke613.iam.gserviceaccount.com'
+
+      - name: gcloud
+        run: |-
+          gcloud auth login --brief --cred-file=${{ steps.auth.outputs.credentials_file_path }}
