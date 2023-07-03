@@ -63,3 +63,15 @@ resource "google_dns_record_set" "_github_pages_challenge_korosuke613_korosuke61
     "fcb70d03c1a01a4d5436ef3403a617"
   ]
 }
+
+resource "google_dns_record_set" "_atproto_korosuke613_dev_txt" {
+  name = "_atproto.${google_dns_managed_zone.korosuke613_dev.dns_name}"
+  type = "TXT"
+  ttl  = 86400
+
+  managed_zone = google_dns_managed_zone.korosuke613_dev.name
+
+  rrdatas = [
+    "did=did:plc:3ufnedn4mcqucrvs7awb4ffd"
+  ]
+}
