@@ -4,11 +4,12 @@ terraform {
     prefix = "terraform-gcp-korosuke613"
   }
 
-  required_version = "~> 1.2.8"
+  required_version = "~> 1.5.2"
 
   required_providers {
     google = {
-      version = "~> 4.34"
+      source  = "hashicorp/google"
+      version = "~> 4.71"
     }
   }
 }
